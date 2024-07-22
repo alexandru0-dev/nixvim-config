@@ -15,6 +15,10 @@
         terraformls = {enable = true;};
         tsserver = {enable = true;};
         jsonls = {enable = true;};
+        rust-analyzer = {
+          enable = true;
+          autostart = true;
+        };
         yamlls = {
           enable = true;
           extraOptions = {
