@@ -1,6 +1,6 @@
 {
   imports = [
     ./lazygit.nix
-    ./gitsigns.nix 
+    ./gitsigns.nix
   ];
 }

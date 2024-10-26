@@ -2,19 +2,26 @@
   plugins = {
     lsp-lines = {enable = true;};
     lsp-format = {enable = true;};
-    helm = {enable = true;};
+    # helm = {enable = true;};
     lsp = {
       enable = true;
       servers = {
         clangd = {enable = true;};
         html = {enable = true;};
-        lua-ls = {enable = true;};
-        nil-ls = {enable = true;};
+        lua_ls = {enable = true;};
+        nixd = {
+          enable = true;
+          extraOptions.offset_encoding = "utf-8";
+        };
         marksman = {enable = true;};
         pyright = {enable = true;};
-        terraformls = {enable = true;};
-        tsserver = {enable = true;};
+        # terraformls = {enable = true;};
+        ts_ls = {enable = true;};
         jsonls = {enable = true;};
+        # rust-analyzer = {
+        #   enable = true;
+        #   autostart = true;
+        # };
         yamlls = {
           enable = true;
           extraOptions = {
@@ -91,9 +98,9 @@
       };
     };
   };
-  extraPlugins = with pkgs.vimPlugins; [
-    ansible-vim
-  ];
+  # extraPlugins = with pkgs.vimPlugins; [
+  #   ansible-vim
+  # ];
 
   extraConfigLua = ''
     local _border = "rounded"
@@ -118,4 +125,5 @@
       border = _border
     }
   '';
+
 }
