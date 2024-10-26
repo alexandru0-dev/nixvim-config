@@ -1,11 +1,8 @@
-{ ...
-}:
 {
   plugins.lazygit = {
     enable = true;
   };
 
-  # lib.mkIf plugins.telescope.enable ''
   extraConfigLua = ''
     require("telescope").load_extension("lazygit")
   '';

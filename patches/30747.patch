@@ -1,0 +1,56 @@
+From a7ce36c9a335de52739c94a410b5b385a0535ee4 Mon Sep 17 00:00:00 2001
+From: tris203 <admin@snappeh.com>
+Date: Thu, 10 Oct 2024 16:01:20 +0100
+Subject: [PATCH] fix(lsp): str_byteindex_enc bounds checking
+
+Problem:
+Previously the index was only checked against the UTF8 length. This
+could cause unexpected behaviours for strings containing multibyte chars
+
+Solution:
+Check indicies correctly against their max value before returning the
+fallback length
+---
+ runtime/lua/vim/lsp/util.lua | 21 ++++++++++-----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
+
+diff --git a/runtime/lua/vim/lsp/util.lua b/runtime/lua/vim/lsp/util.lua
+index fc822f140303f2..2b9e734c188375 100644
+--- a/runtime/lua/vim/lsp/util.lua
++++ b/runtime/lua/vim/lsp/util.lua
+@@ -171,25 +171,24 @@ end
+ ---@param encoding string utf-8|utf-16|utf-32| defaults to utf-16
+ ---@return integer byte (utf-8) index of `encoding` index `index` in `line`
+ function M._str_byteindex_enc(line, index, encoding)
+-  local len = #line
+-  if index > len then
+-    -- LSP spec: if character > line length, default to the line length.
+-    -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#position
+-    return len
+-  end
++  -- LSP spec: if character > line length, default to the line length.
++  -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#position
++  local len8 = #line
+   if not encoding then
+     encoding = 'utf-16'
+   end
+   if encoding == 'utf-8' then
+-    if index then
++    if index and index <= len8 then
+       return index
+     else
+-      return len
++      return len8
+     end
+-  elseif encoding == 'utf-16' then
+-    return vim.str_byteindex(line, index, true)
++  end
++  local len32, len16 = vim.str_utfindex(line)
++  if encoding == 'utf-16' then
++    return index <= len16 and vim.str_byteindex(line, index, true) or len8
+   elseif encoding == 'utf-32' then
+-    return vim.str_byteindex(line, index)
++    return index <= len32 and vim.str_byteindex(line, index) or len8
+   else
+     error('Invalid encoding: ' .. vim.inspect(encoding))
+   end

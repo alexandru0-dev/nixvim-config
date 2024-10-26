@@ -28,7 +28,10 @@
   };
   keymaps = [
     {
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<leader>gh";
       action = "gitsigns";
       options = {
@@ -74,4 +77,3 @@
     }
   ];
 }
-

@@ -4,11 +4,12 @@
     ./bufferline.nix
     ./keymaps.nix
     ./settings.nix
-    ./cmp/cmp.nix
-    ./cmp/lspkind.nix
-    ./snippets/luasnip.nix
+    ./cmp
+    ./snippets
     ./lsp
     ./git
     ./ui
   ];
+
+  performance.byteCompileLua.enable = true;
 }

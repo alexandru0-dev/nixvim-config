@@ -1,20 +1,74 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
+
   plugins = {
-    lsp-lines = {enable = true;};
-    lsp-format = {enable = true;};
-    helm = {enable = true;};
+    lsp-lines = {
+      enable = true;
+    };
+    lsp-format = {
+      enable = true;
+    };
+    # helm = {enable = true;};
     lsp = {
       enable = true;
       servers = {
-        clangd = {enable = true;};
-        html = {enable = true;};
-        lua-ls = {enable = true;};
-        nil-ls = {enable = true;};
-        marksman = {enable = true;};
-        pyright = {enable = true;};
-        terraformls = {enable = true;};
-        tsserver = {enable = true;};
-        jsonls = {enable = true;};
+        clangd = {
+          enable = true;
+        };
+        html = {
+          enable = true;
+        };
+        lua_ls = {
+          enable = true;
+        };
+        nixd = {
+          enable = true;
+          settings = {
+            # formatting.command = [ "nixfmt" ];
+            nixpkgs.expr = ''(builtins.getFlake "/etc/nixos").inputs.nixpkgs {}'';
+
+            options =
+              let
+                flake = ''(builtins.getFlake "/etc/nixos")'';
+                # flake = ''builtins.getFlake "''${(builtins.findFile builtins.nixPath "self")}"'';
+                hostname = ''''${(${flake}.inputs.nixpkgs.lib.trim (builtins.readFile "/etc/hostname"))}'';
+              in
+              rec {
+                # Completitions for nixos and home manager options
+                nixos.expr = ''${flake}.nixosConfigurations.${hostname}.options'';
+
+                home_manager.expr = ''${nixos.expr}.home-manager.users.type.getSubOptions [ ]'';
+
+                nixvim.expr = ''${flake}.inputs.nixvim.outputs.packages.''${builtins.currentSystem}.default.options'';
+              };
+            diagnostic = {
+              # Suppress noisy warnings
+              suppress = [
+                # "sema-escaping-with"
+                # "var-bind-to-this"
+              ];
+            };
+          };
+        };
+        marksman = {
+          enable = true;
+        };
+        pyright = {
+          enable = true;
+        };
+        terraformls = {
+          enable = true;
+        };
+        ts_ls = {
+          enable = true;
+        };
+        jsonls = {
+          enable = true;
+        };
+        # rust-analyzer = {
+        #   enable = true;
+        #   autostart = true;
+        # };
         yamlls = {
           enable = true;
           extraOptions = {
@@ -91,9 +145,9 @@
       };
     };
   };
-  extraPlugins = with pkgs.vimPlugins; [
-    ansible-vim
-  ];
+  # extraPlugins = with pkgs.vimPlugins; [
+  #   ansible-vim
+  # ];
 
   extraConfigLua = ''
     local _border = "rounded"
