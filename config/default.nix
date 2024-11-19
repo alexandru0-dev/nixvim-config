@@ -10,6 +10,4 @@
     ./git
     ./ui
   ];
-
-  performance.byteCompileLua.enable = true;
 }
