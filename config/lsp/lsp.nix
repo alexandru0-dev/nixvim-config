@@ -53,7 +53,7 @@
         marksman = {
           enable = true;
         };
-        pyright = {
+        basedpyright = {
           enable = true;
         };
         terraformls = {
