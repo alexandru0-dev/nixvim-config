@@ -5,3 +5,5 @@
 - nvim-dap
 - lazyloading
 
+
+get inspo from khanelivim
