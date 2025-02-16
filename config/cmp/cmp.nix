@@ -1,10 +1,10 @@
 {
   plugins = {
     cmp-emoji = {
-      enable = true;
+      enable = false;
     };
     cmp = {
-      enable = true;
+      enable = false;
       settings = {
         autoEnableSources = true;
         experimental = {
@@ -27,17 +27,17 @@
         };
         sources = [
           { name = "git"; }
-          { name = "nvim_lsp"; }
+          # { name = "nvim_lsp"; }
           { name = "emoji"; }
-          {
-            name = "buffer"; # text within current buffer
-            option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-            keywordLength = 3;
-          }
-          {
-            name = "path"; # file system paths
-            keywordLength = 3;
-          }
+          # {
+          #   name = "buffer"; # text within current buffer
+          #   option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+          #   keywordLength = 3;
+          # }
+          # {
+          #   name = "path"; # file system paths
+          #   keywordLength = 3;
+          # }
           {
             name = "luasnip"; # snippets
             keywordLength = 3;
@@ -45,9 +45,9 @@
         ];
 
         window = {
-          completion = {
-            border = "solid";
-          };
+          # completion = {
+          #   border = "solid";
+          # };
           documentation = {
             border = "solid";
           };
@@ -67,13 +67,13 @@
       };
     };
     cmp-nvim-lsp = {
-      enable = true;
+      # enable = true;
     }; # lsp
     cmp-buffer = {
       enable = true;
     };
     cmp-path = {
-      enable = true;
+      # enable = true;
     }; # file system paths
     cmp_luasnip = {
       enable = true;
@@ -85,13 +85,13 @@
   extraConfigLua = ''
         luasnip = require("luasnip")
         kind_icons = {
+          Class = " ",
           Text = "󰊄",
           Method = " ",
           Function = "󰡱 ",
           Constructor = " ",
           Field = " ",
           Variable = "󱀍 ",
-          Class = " ",
           Interface = " ",
           Module = "󰕳 ",
           Property = " ",
@@ -110,7 +110,7 @@
           Event = " ",
           Operator = " ",
           TypeParameter = " ",
-        } 
+        }  
 
          local cmp = require'cmp'
 

@@ -2,6 +2,10 @@
 {
 
   plugins = {
+    vim-dadbod.enable = true;
+    vim-dadbod-ui.enable = true;
+    vim-dadbod-completion.enable = true;
+
     lsp-lines = {
       enable = true;
     };
@@ -14,6 +18,11 @@
       servers = {
         clangd = {
           enable = true;
+        };
+        omnisharp = {
+          enable = true;
+          settings.enableMsBuildLoadProjectsOnDemand = true;
+          settings.enableRoslynAnalyzers = true;
         };
         html = {
           enable = true;
@@ -49,12 +58,20 @@
               ];
             };
           };
+          extraOptions = {
+            offset_encoding = "utf-8";
+          };
         };
         marksman = {
           enable = true;
         };
         basedpyright = {
           enable = true;
+          settings = {
+            analysis.diagnosticSeverityOverrides = {
+              reportCallInDefaultInitializer = "none";
+            };
+          };
         };
         terraformls = {
           enable = true;
@@ -65,10 +82,12 @@
         jsonls = {
           enable = true;
         };
-        # rust-analyzer = {
-        #   enable = true;
-        #   autostart = true;
-        # };
+        rust_analyzer = {
+          enable = true;
+          autostart = true;
+          installRustc = false;
+          installCargo = false;
+        };
         yamlls = {
           enable = true;
           extraOptions = {
@@ -83,8 +102,10 @@
                   "http://json.schemastore.org/ansible-playbook" = "*play*.{yml,yaml}";
                   "http://json.schemastore.org/chart" = "Chart.{yml,yaml}";
                   "https://json.schemastore.org/dependabot-v2" = ".github/dependabot.{yml,yaml}";
-                  "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" = "*docker-compose*.{yml,yaml}";
-                  "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json" = "*flow*.{yml,yaml}";
+                  "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" =
+                    "*docker-compose*.{yml,yaml}";
+                  "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json" =
+                    "*flow*.{yml,yaml}";
                 };
               };
             };
@@ -145,9 +166,6 @@
       };
     };
   };
-  # extraPlugins = with pkgs.vimPlugins; [
-  #   ansible-vim
-  # ];
 
   extraConfigLua = ''
     local _border = "rounded"

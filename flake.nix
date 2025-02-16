@@ -2,7 +2,21 @@
   description = "My personal nixvim configuration";
 
   inputs = {
-    nixvim.url = "github:nix-community/nixvim";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    # nixvim.url = "github:nix-community/nixvim";
+    nixvim.url = "path:/home/alex0/Repos/Personal/nixvim";
+    nixvim.inputs = {
+      nixpkgs.follows = "nixpkgs";
+      devshell.follows = "";
+      flake-compat.follows = "";
+      git-hooks.follows = "";
+      home-manager.follows = "";
+      nix-darwin.follows = "";
+      treefmt-nix.follows = "";
+      nuschtosSearch.follows = "";
+    };
+
     flake-utils.url = "github:numtide/flake-utils";
   };
 

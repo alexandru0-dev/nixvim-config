@@ -1,0 +1,27 @@
+From 977fde5352db4dc26ca81a3b08722283128ba9c9 Mon Sep 17 00:00:00 2001
+From: Elouan Martinet <elouan.martinet@trustbuilder.com>
+Date: Tue, 26 Nov 2024 09:44:54 +0100
+Subject: [PATCH] Guess indentation when changing the file type
+
+---
+ lua/guess-indent/init.lua | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/lua/guess-indent/init.lua b/lua/guess-indent/init.lua
+index 5243c84..948988f 100644
+--- a/lua/guess-indent/init.lua
++++ b/lua/guess-indent/init.lua
+@@ -50,6 +50,13 @@ local function setup_autocommands()
+       })
+     end,
+   })
++  vim.api.nvim_create_autocmd("FileType", {
++    group = augroup,
++    desc = "Guess indentation when changing the file type",
++    callback = function(args)
++      M.set_from_buffer(args.buf, true, true)
++    end,
++  })
+ end
+ 
+ -- Return true if the string looks like an inline comment.
