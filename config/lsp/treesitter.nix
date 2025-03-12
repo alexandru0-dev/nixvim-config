@@ -4,11 +4,10 @@
     settings.indent.enable = true;
     folding = true;
     nixvimInjections = true;
-
   };
 
   plugins.treesitter-context = {
-    enable = true;
+    enable = false;
     settings.mode = "topline";
     # settings.max_lines = 1;
   };

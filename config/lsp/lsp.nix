@@ -1,17 +1,17 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  self,
+  lib,
+  config,
+  ...
+}:
 {
 
   plugins = {
     vim-dadbod.enable = true;
-    vim-dadbod-ui.enable = true;
-    vim-dadbod-completion.enable = true;
+    vim-dadbod-ui.enable = config.plugins.vim-dadbod.enable;
+    vim-dadbod-completion.enable = config.plugins.vim-dadbod-ui.enable;
 
-    lsp-lines = {
-      enable = true;
-    };
-    lsp-format = {
-      enable = true;
-    };
     # helm = {enable = true;};
     lsp = {
       enable = true;
@@ -29,38 +29,6 @@
         };
         lua_ls = {
           enable = true;
-        };
-        nixd = {
-          enable = true;
-          settings = {
-            # formatting.command = [ "nixfmt" ];
-            nixpkgs.expr = ''(builtins.getFlake "/etc/nixos").inputs.nixpkgs {}'';
-
-            options =
-              let
-                flake = ''(builtins.getFlake "/etc/nixos")'';
-                # flake = ''builtins.getFlake "''${(builtins.findFile builtins.nixPath "self")}"'';
-                hostname = ''''${(${flake}.inputs.nixpkgs.lib.trim (builtins.readFile "/etc/hostname"))}'';
-              in
-              rec {
-                # Completitions for nixos and home manager options
-                nixos.expr = ''${flake}.nixosConfigurations.${hostname}.options'';
-
-                home_manager.expr = ''${nixos.expr}.home-manager.users.type.getSubOptions [ ]'';
-
-                nixvim.expr = ''${flake}.inputs.nixvim.outputs.packages.''${builtins.currentSystem}.default.options'';
-              };
-            diagnostic = {
-              # Suppress noisy warnings
-              suppress = [
-                # "sema-escaping-with"
-                # "var-bind-to-this"
-              ];
-            };
-          };
-          extraOptions = {
-            offset_encoding = "utf-8";
-          };
         };
         marksman = {
           enable = true;
@@ -102,10 +70,8 @@
                   "http://json.schemastore.org/ansible-playbook" = "*play*.{yml,yaml}";
                   "http://json.schemastore.org/chart" = "Chart.{yml,yaml}";
                   "https://json.schemastore.org/dependabot-v2" = ".github/dependabot.{yml,yaml}";
-                  "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" =
-                    "*docker-compose*.{yml,yaml}";
-                  "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json" =
-                    "*flow*.{yml,yaml}";
+                  "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" = "*docker-compose*.{yml,yaml}";
+                  "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json" = "*flow*.{yml,yaml}";
                 };
               };
             };

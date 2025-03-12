@@ -3,59 +3,45 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:NixOS/nixpkgs";
 
-    # nixvim.url = "github:nix-community/nixvim";
-    nixvim.url = "path:/home/alex0/Repos/Personal/nixvim";
+    nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs = {
+      flake-parts.follows = "flake-parts";
       nixpkgs.follows = "nixpkgs";
-      devshell.follows = "";
-      flake-compat.follows = "";
-      git-hooks.follows = "";
-      home-manager.follows = "";
-      nix-darwin.follows = "";
-      treefmt-nix.follows = "";
       nuschtosSearch.follows = "";
     };
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     flake-utils.url = "github:numtide/flake-utils";
+
+    blink-cmp = {
+      url = "github:saghen/blink.cmp";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
   };
 
   outputs =
     {
-      self,
-      nixpkgs,
-      nixvim,
-      flake-utils,
+      flake-parts,
       ...
     }@inputs:
-    let
-      config = import ./config; # import the module directly
-    in
-    flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        nixvimLib = nixvim.lib.${system};
-        overlays = import ./overlay.nix;
-        pkgs = import nixpkgs { inherit system overlays; };
-        nixvim' = nixvim.legacyPackages.${system};
-        nixvimModule = {
-          inherit pkgs;
-          module = config;
-        };
-        nvim = nixvim'.makeNixvimWithModule nixvimModule;
-      in
-      {
-        formatter = pkgs.nixfmt-rfc-style;
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
 
-        checks = {
-          # Run `nix flake check .` to verify that your config is not broken
-          default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
-        };
-
-        packages = {
-          # Lets you run `nix run .` to start nixvim
-          default = nvim;
-        };
-      }
-    );
+      imports = [ ./flake ];
+    };
 }

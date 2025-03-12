@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
 
   config.opts = {
@@ -9,6 +10,8 @@
 
     # Always keep 8 lines above/below cursor unless at start/end of file
     scrolloff = 8;
+
+    startofline = true; # motions like "G" also move to the first char
 
     # Enable relative line numbers
     number = true;
