@@ -77,6 +77,8 @@
         ];
         cmdline = [ ];
         providers = {
+          # BUILT-IN SOURCES
+          lsp.score_offset = 4;
           buffer = {
             score_offset = -7;
           };
@@ -99,6 +101,17 @@
       };
     };
   };
+  plugins.blink-compat = {
+    enable = true;
+
+    settings = {
+      # When wanted
+      # debug = true;
+      # NOTE: apparently just doesn't work without using lazy...
+      # impersonate_nvim_cmp = true;
+    };
+  };
+
   # plugins.blink-emoji.enable = true;
 
   # extraPlugins = with pkgs.vimPlugins; [

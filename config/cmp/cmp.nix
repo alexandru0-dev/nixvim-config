@@ -1,7 +1,7 @@
 {
   plugins = {
     cmp-emoji = {
-      enable = false;
+      enable = true;
     };
     cmp = {
       enable = false;
@@ -67,7 +67,7 @@
       };
     };
     cmp-nvim-lsp = {
-      # enable = true;
+      enable = false;
     }; # lsp
     cmp-buffer = {
       enable = true;
