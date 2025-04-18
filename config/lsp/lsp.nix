@@ -33,14 +33,6 @@
         marksman = {
           enable = true;
         };
-        basedpyright = {
-          enable = true;
-          settings = {
-            analysis.diagnosticSeverityOverrides = {
-              reportCallInDefaultInitializer = "none";
-            };
-          };
-        };
         terraformls = {
           enable = true;
         };

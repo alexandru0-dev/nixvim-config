@@ -7,6 +7,7 @@
     # ./helm-ls.nix
     # ./nil-ls.nix
     ./nixd.nix
+    ./python.nix
     # ./rust-analyzer.nix
     # ./typos-lsp.nix
   ];
