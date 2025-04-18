@@ -42,12 +42,12 @@
         jsonls = {
           enable = true;
         };
-        rust_analyzer = {
-          enable = true;
-          autostart = true;
-          installRustc = false;
-          installCargo = false;
-        };
+        # rust_analyzer = {
+        #   enable = true;
+        #   autostart = true;
+        #   installRustc = false;
+        #   installCargo = false;
+        # };
         yamlls = {
           enable = true;
           extraOptions = {
