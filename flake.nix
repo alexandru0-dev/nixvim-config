@@ -16,7 +16,6 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
 
     blink-cmp = {
       url = "github:saghen/blink.cmp";
