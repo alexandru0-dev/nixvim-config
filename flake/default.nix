@@ -14,6 +14,8 @@
     # ./treefmt.nix
   ];
 
+  debug = true;
+
   perSystem =
     {
       config,
