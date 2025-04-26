@@ -1,5 +1,4 @@
 {
- imports = [
- ./luasnip.nix
- ];
+  imports = [
+  ];
 }

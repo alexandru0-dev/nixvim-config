@@ -1,4 +1,8 @@
 {
+  config,
+  ...
+}:
+{
   plugins.treesitter = {
     enable = true;
     settings.indent.enable = true;
@@ -7,13 +11,13 @@
   };
 
   plugins.treesitter-context = {
-    enable = false;
+    enable = config.plugins.treesitter.enable && false;
     settings.mode = "topline";
     # settings.max_lines = 1;
   };
 
   plugins.treesitter-textobjects = {
-    enable = true;
+    enable = config.plugins.treesitter.enable;
     select = {
       enable = true;
       lookahead = true;
