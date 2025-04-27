@@ -20,8 +20,8 @@ in
       #     ./lua.nix
       ./options.nix
       ./performance.nix
+      ./usercommands.nix
       ../../config
-      #     ./usercommands.nix
     ];
 
   nixpkgs = {
