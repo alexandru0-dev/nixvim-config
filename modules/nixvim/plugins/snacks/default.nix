@@ -6,6 +6,10 @@
   ...
 }:
 {
+  imports = [
+    ./picker.nix
+  ];
+
   plugins = {
     snacks = {
       enable = true;
