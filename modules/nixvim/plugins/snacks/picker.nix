@@ -4,6 +4,10 @@
   ...
 }:
 {
+  imports = [
+    ./picker/lsp.nix
+  ];
+
   plugins = {
     snacks = {
       enable = true;
