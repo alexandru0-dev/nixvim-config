@@ -13,6 +13,9 @@
       enable = true;
 
       settings = {
+        explorer = {
+          replace_netrw = true;
+        };
         picker = {
           actions = {
             calculate_file_truncate_width.__raw = ''
