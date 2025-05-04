@@ -1,6 +1,7 @@
+{ config, lib, ... }:
 {
   plugins.neo-tree = {
-    enable = true;
+    enable = !(config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings);
     sources = [
       "filesystem"
       "buffers"
