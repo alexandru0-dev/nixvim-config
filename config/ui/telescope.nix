@@ -1,6 +1,11 @@
+{ lib, config, ... }:
 {
   plugins.telescope = {
-    enable = false;
+    enable =
+      !(
+        config.plugins.fzf-lua.enable
+        || (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
+      );
     extensions = {
       file-browser = {
         enable = true;
