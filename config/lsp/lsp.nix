@@ -19,11 +19,6 @@
         clangd = {
           enable = true;
         };
-        omnisharp = {
-          enable = true;
-          settings.enableMsBuildLoadProjectsOnDemand = true;
-          settings.enableRoslynAnalyzers = true;
-        };
         html = {
           enable = true;
         };

@@ -8,6 +8,7 @@
     # ./nil-ls.nix
     ./nixd.nix
     ./python.nix
+    ./csharp.nix
     # ./rust-analyzer.nix
     # ./typos-lsp.nix
   ];
