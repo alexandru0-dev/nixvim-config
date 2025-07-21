@@ -6,6 +6,7 @@
     # ./harper-ls.nix
     # ./helm-ls.nix
     # ./nil-ls.nix
+    ./qmllsp.nix
     ./nixd.nix
     ./python.nix
     ./csharp.nix
