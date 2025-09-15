@@ -1,12 +1,22 @@
 { flake }:
 _final: super:
 let
-  vimPlugins-master = flake.inputs.nixpkgs-master.legacyPackages.${super.stdenv.system}.vimPlugins;
+  nixpkgs-master-packages = import flake.inputs.nixpkgs-master {
+    inherit (super.stdenv) system;
+    config = {
+      allowUnfree = true;
+      allowAliases = false;
+    };
+  };
+  inherit (nixpkgs-master-packages) luaPackages vimPlugins;
 in
 {
 
-  vimPlugins = vimPlugins-master // {
-    guess-indent-nvim = vimPlugins-master.guess-indent-nvim.overrideAttrs (oldAttrs: {
+  vimPlugins = vimPlugins // {
+    #
+    # Specific package overlays need to go in here to not get ignored
+    #
+    guess-indent-nvim = vimPlugins.guess-indent-nvim.overrideAttrs (oldAttrs: {
       version = "2024-04-03";
       src = super.fetchFromGitHub {
         owner = "nmac427";
@@ -21,7 +31,9 @@ in
 
     blink-cmp = flake.inputs.blink-cmp.packages.${super.stdenv.system}.default;
   };
-  inherit (flake.inputs.nixpkgs-master.legacyPackages.${super.stdenv.system})
-    luaPackages
-    ;
+  luaPackages = luaPackages // {
+    #
+    # Specific package overlays need to go in here to not get ignored
+    #
+  };
 }
