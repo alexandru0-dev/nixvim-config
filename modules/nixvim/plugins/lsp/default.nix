@@ -3,7 +3,7 @@
   imports = [
     # ./ccls.nix
     # ./clangd.nix
-    # ./harper-ls.nix
+    ./harper-ls.nix
     # ./helm-ls.nix
     # ./nil-ls.nix
     ./qmllsp.nix
