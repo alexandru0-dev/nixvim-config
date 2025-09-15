@@ -17,7 +17,7 @@ in
       #     ./diagnostics.nix
       #     ./ft.nix
       ./keymappings.nix
-      #     ./lua.nix
+      ./lua.nix
       ./options.nix
       ./performance.nix
       ./usercommands.nix
