@@ -2,7 +2,7 @@
 {
   imports = [
     # ./ccls.nix
-    # ./clangd.nix
+    ./clangd.nix
     ./harper-ls.nix
     # ./helm-ls.nix
     # ./nil-ls.nix
