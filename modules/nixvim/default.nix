@@ -21,6 +21,7 @@ in
       ./options.nix
       ./performance.nix
       ./usercommands.nix
+      ./colorschemes.nix
       ../../config
     ];
 
