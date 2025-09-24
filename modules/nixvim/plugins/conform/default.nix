@@ -99,7 +99,7 @@
           nix = [ "nixfmt" ];
           python = [
             "isort"
-            "ruff"
+            # "ruff"
           ];
           rust = [ "rustfmt" ];
           sh = [
@@ -165,4 +165,3 @@
   };
 
 }
-
