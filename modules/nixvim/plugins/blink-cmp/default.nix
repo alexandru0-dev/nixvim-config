@@ -66,6 +66,7 @@
       signature = {
         enabled = true;
       };
+      snippets.preset = "mini_snippets";
       sources = {
         default = [
           "lsp"
