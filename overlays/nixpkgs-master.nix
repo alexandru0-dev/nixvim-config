@@ -35,6 +35,9 @@ in
     neotest = luaPackages.neotest.override {
       doCheck = false;
     };
+    fzf-lua = luaPackages.fzf-lua.override {
+      doCheck = false;
+    };
     #
     # Specific package overlays need to go in here to not get ignored
     #
