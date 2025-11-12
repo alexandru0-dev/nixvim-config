@@ -32,6 +32,9 @@ in
     blink-cmp = flake.inputs.blink-cmp.packages.${super.stdenv.system}.default;
   };
   luaPackages = luaPackages // {
+    neotest = luaPackages.neotest.override {
+      doCheck = false;
+    };
     #
     # Specific package overlays need to go in here to not get ignored
     #
