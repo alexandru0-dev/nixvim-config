@@ -63,7 +63,7 @@
             # pkgs.jdk11
             # pkgs.jdk17
             # pkgs.jdk
-            pkgs.jdk23
+            pkgs.jdk25
           ];
         };
         codeGeneration = {
