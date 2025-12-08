@@ -30,16 +30,37 @@ in
     });
 
     blink-cmp = flake.inputs.blink-cmp.packages.${super.stdenv.system}.default;
+
+    fzf-lua = vimPlugins.fzf-lua.overrideAttrs {
+      doCheck = false;
+    };
+
+    neotest = vimPlugins.neotest.overrideAttrs {
+      doCheck = false;
+    };
+
+    snacks-nvim = vimPlugins.snacks-nvim.overrideAttrs (_oldAttrs: {
+      version = flake.inputs.snacks-nvim.shortRev;
+      src = flake.inputs.snacks-nvim;
+      nvimSkipModules = _oldAttrs.nvimSkipModules ++ [
+        "snacks.gh.buf"
+        "snacks.gh.init"
+        "snacks.gh.render.init"
+        "snacks.gh.actions"
+        "snacks.picker.util.diff"
+        "snacks.picker.source.gh"
+      ];
+    });
   };
   luaPackages = luaPackages // {
+    #
+    # Specific package overlays need to go in here to not get ignored
+    #
     neotest = luaPackages.neotest.override {
       doCheck = false;
     };
     fzf-lua = luaPackages.fzf-lua.override {
       doCheck = false;
     };
-    #
-    # Specific package overlays need to go in here to not get ignored
-    #
   };
 }
