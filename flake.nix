@@ -9,7 +9,6 @@
     nixvim.inputs = {
       flake-parts.follows = "flake-parts";
       nixpkgs.follows = "nixpkgs";
-      nuschtosSearch.follows = "";
     };
 
     flake-parts = {
