@@ -1,17 +1,15 @@
-# Nixvim template
+# Nixvim config
 
-This template gives you a good starting point for configuring nixvim standalone.
+This is a personal configuration of neovim using nixvim.
 
-## Configuring
+## Run this configuration
+To run this configuration you can locally on the repo:
+```
+nix --extra-experimental-features "nix-command flakes" run .
+```
 
-To start configuring, just add or modify the nix files in `./config`.
-If you add a new configuration file, remember to add it to the
-[`config/default.nix`](./config/default.nix) file
-
-## Testing your new configuration
-
-To test your configuration simply run the following command
+or
 
 ```
-nix run .
+nix --extra-experimental-features "nix-command flakes" run github:alexandru0-dev/nixvim-config
 ```
