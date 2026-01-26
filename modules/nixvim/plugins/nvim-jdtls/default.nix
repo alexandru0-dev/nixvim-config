@@ -60,10 +60,11 @@
         configuration = {
           updateBuildConfiguration = "interactive";
           runtimes = [
-            # pkgs.jdk11
-            # pkgs.jdk17
-            # pkgs.jdk
-            pkgs.jdk23
+            pkgs.jdk
+            pkgs.jdk8
+            pkgs.jdk11
+            pkgs.jdk17
+            pkgs.jdk25
           ];
         };
         codeGeneration = {
