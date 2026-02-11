@@ -1,4 +1,4 @@
-{ lib, helpers, ... }:
+{ lib, ... }:
 {
   globals = {
     mapleader = " ";
@@ -84,5 +84,5 @@
             };
           };
     in
-    helpers.keymaps.mkKeymaps { options.silent = true; } (normal ++ visual);
+    lib.nixvim.keymaps.mkKeymaps { options.silent = true; } (normal ++ visual);
 }

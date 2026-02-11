@@ -13,7 +13,7 @@ in
     enable = true;
     settings = {
       nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
-      formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+      formatting.command = [ "${lib.getExe pkgs.nixfmt}" ];
       options = rec {
         # Completitions for nixos and home manager options
         nixos.expr = ''${flake}.nixosConfigurations.${hostname}.options'';

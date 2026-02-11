@@ -1,9 +1,9 @@
 { lib, pkgs, ... }:
 {
-  lsp.servers.clangd = {
+  plugins.lsp.servers.clangd = {
     enable = true;
 
-    settings = {
+    config = {
       settings.init_options = {
         usePlaceholders = true;
         completeUnimported = true;
