@@ -1,10 +1,10 @@
 { lib, pkgs, ... }:
 {
-  plugins.lsp.servers.clangd = {
+  lsp.servers.clangd = {
     enable = true;
 
     config = {
-      settings.init_options = {
+      init_options = {
         usePlaceholders = true;
         completeUnimported = true;
         clangdFileStatus = true;

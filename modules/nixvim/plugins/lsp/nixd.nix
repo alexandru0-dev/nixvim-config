@@ -9,9 +9,9 @@ let
   hostname = ''''${(${flake}.inputs.nixpkgs.lib.trim (builtins.readFile "/etc/hostname"))}'';
 in
 {
-  plugins.lsp.servers.nixd = {
+  lsp.servers.nixd = {
     enable = true;
-    settings = {
+    config.settings = {
       nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
       formatting.command = [ "${lib.getExe pkgs.nixfmt}" ];
       options = rec {

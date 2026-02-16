@@ -1,5 +1,5 @@
 {
-  plugins.lsp.servers.qmlls = {
+  lsp.servers.qmlls = {
     enable = true;
   };
 }

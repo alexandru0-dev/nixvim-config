@@ -1,7 +1,7 @@
 {
-  plugins.lsp.servers.basedpyright = {
+  lsp.servers.basedpyright = {
     enable = true;
-    settings = {
+    config.settings = {
       analysis.analysis.useTypingExtensions = true;
       analysis.inlayHints.genericTypes = true;
       analysis.diagnosticSeverityOverrides = {
@@ -10,8 +10,7 @@
     };
   };
 
-  plugins.lsp.servers.ruff = {
+  lsp.servers.ruff = {
     enable = true;
   };
-
 }

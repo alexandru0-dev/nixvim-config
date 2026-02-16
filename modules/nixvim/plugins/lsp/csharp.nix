@@ -1,7 +1,9 @@
 {
-  plugins.lsp.servers.omnisharp = {
+  lsp.servers.omnisharp = {
     enable = true;
-    settings.enableMsBuildLoadProjectsOnDemand = true;
-    settings.enableRoslynAnalyzers = true;
+    config.settings = {
+      enableMsBuildLoadProjectsOnDemand = true;
+      enableRoslynAnalyzers = true;
+    };
   };
 }
