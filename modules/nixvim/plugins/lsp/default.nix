@@ -7,6 +7,7 @@
     ./nixd.nix
     ./python.nix
     ./csharp.nix
+    ./markdown.nix
   ];
 
   # Global LSP settings
@@ -35,7 +36,6 @@
       # Basic servers enabled here
       html.enable = true;
       lua_ls.enable = true;
-      marksman.enable = true;
       jsonls.enable = true;
       ts_ls.enable = true;
       terraformls.enable = true;
