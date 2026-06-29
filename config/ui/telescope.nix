@@ -1,6 +1,11 @@
+{ lib, ... }:
+
+let
+  enableTelescope = false;
+in
 {
   plugins.telescope = {
-    enable = false;
+    enable = enableTelescope;
     extensions = {
       file-browser = {
         enable = true;
@@ -172,7 +177,7 @@
       };
     };
   };
-  keymaps = [
+  keymaps = lib.optionals enableTelescope [
     {
       mode = "n";
       key = "<leader>sd";
@@ -198,7 +203,7 @@
       };
     }
   ];
-  extraConfigLua = ''
+  extraConfigLua = lib.mkIf (enableTelescope) ''
     require("telescope").setup{
       pickers = {
         colorscheme = {
