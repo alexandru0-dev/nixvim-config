@@ -89,6 +89,7 @@
         };
 
         routes = [
+          # Skip search_count messages
           {
             filter = {
               event = "msg_show";
@@ -98,8 +99,8 @@
               skip = true;
             };
           }
+          # Skip noisy LSP progress messages
           {
-            # skip progress messages from noisy servers
             filter = {
               event = "lsp";
               kind = "progress";
@@ -118,6 +119,50 @@
             };
             opts = {
               skip = true;
+            };
+          }
+          # Skip annoying "written" messages
+          {
+            filter = {
+              event = "msg_show";
+              find = "written";
+            };
+            opts = {
+              skip = true;
+            };
+          }
+          # Skip "search hit BOTTOM/TOP" messages
+          {
+            filter = {
+              event = "msg_show";
+              any = [
+                { find = "search hit BOTTOM"; }
+                { find = "search hit TOP"; }
+              ];
+            };
+            opts = {
+              skip = true;
+            };
+          }
+          # Skip "Pattern not found" messages
+          {
+            filter = {
+              event = "msg_show";
+              find = "Pattern not found";
+            };
+            opts = {
+              skip = true;
+            };
+          }
+          # Route long messages (>20 lines) to split
+          {
+            filter = {
+              event = "msg_show";
+              min_height = 20;
+            };
+            view = "split";
+            opts = {
+              enter = true;
             };
           }
         ];
