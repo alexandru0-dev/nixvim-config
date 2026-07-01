@@ -11,23 +11,14 @@
       nixpkgs.follows = "nixpkgs";
     };
 
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
-    blink-cmp = {
-      url = "github:Saghen/blink.cmp";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    blink-cmp.url = "github:Saghen/blink.cmp";
+    blink-cmp.inputs.nixpkgs.follows = "nixpkgs";
 
-    snacks-nvim = {
-      url = "github:folke/snacks.nvim";
-      flake = false;
-    };
+    snacks-nvim.url = "github:folke/snacks.nvim";
+    snacks-nvim.flake = false;
 
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
   };

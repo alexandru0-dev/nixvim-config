@@ -1,4 +1,9 @@
-{ lib, self, ... }:
+{
+  inputs,
+  lib,
+  self,
+  ...
+}:
 let
   inherit (builtins) readDir;
   inherit (lib.attrsets) foldlAttrs;
@@ -28,5 +33,6 @@ in
   nixpkgs = {
     overlays = lib.attrValues self.overlays;
     config.allowUnfree = true;
+    source = inputs.nixpkgs;
   };
 }
